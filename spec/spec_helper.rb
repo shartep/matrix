@@ -1,6 +1,9 @@
 require 'rubygems'
 require 'bundler'
-Bundler.require(:default)
+Bundler.require(:default, :test)
+
+require 'active_support'
+require 'active_support/core_ext/class/attribute'
 
 Dir.glob(File.expand_path('[!spec/]**/**/*.rb'), &method(:require))
 
