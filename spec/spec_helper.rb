@@ -3,7 +3,7 @@ require 'bundler'
 Bundler.require(:default, :test)
 
 require 'active_support'
-require 'active_support/core_ext/class/attribute'
+require 'active_support/core_ext'
 
 Dir.glob(File.expand_path('[!spec/]**/**/*.rb'), &method(:require))
 

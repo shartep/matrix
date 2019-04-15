@@ -26,6 +26,7 @@ GEM
       rspec-support (~> 3.8.0)
     rspec-support (3.8.0)
     saharspec (0.0.5)
+    smarter_csv (1.2.6)
     thread_safe (0.3.6)
     tzinfo (1.2.5)
       thread_safe (~> 0.1)
@@ -38,6 +39,7 @@ DEPENDENCIES
   memoist
   rspec
   saharspec
+  smarter_csv
 
 RUBY VERSION
    ruby 2.6.2p47
