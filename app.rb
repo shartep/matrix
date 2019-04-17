@@ -13,10 +13,17 @@ logger = TaggedLogger.new(Logger.new(STDOUT), 'app')
 logger.info 'APPLICATION START'
 
 stream_sentinels = File.open('./sentinels/routes.csv', 'r')
+stream_sniffers = {
+  routes: File.open('./sniffers/routes.csv', 'r'),
+  sequences: File.open('./sniffers/sequences.csv', 'r'),
+  node_times: File.open('./sniffers/node_times.csv', 'r'),
+}
 current_user = nil
 
 sentinels = Sentinel::Convert.new(current_user, data_stream: stream_sentinels).call
+sniffers = Sniffer::Convert.new(current_user, stream_sniffers).call
 
-logger.info "Result: #{sentinels}"
+logger.info "Result sentinels: #{sentinels}"
+logger.info "Result sniffers: #{sniffers}"
 
 logger.info 'APPLICATION COMPLETE'
