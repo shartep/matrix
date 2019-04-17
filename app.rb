@@ -18,12 +18,18 @@ stream_sniffers = {
   sequences: File.open('./sniffers/sequences.csv', 'r'),
   node_times: File.open('./sniffers/node_times.csv', 'r'),
 }
+stream_loopholes = {
+  routes: File.open('./loopholes/routes.json', 'r'),
+  node_pairs: File.open('./loopholes/node_pairs.json', 'r'),
+}
 current_user = nil
 
 sentinels = Sentinel::Convert.new(current_user, data_stream: stream_sentinels).call
 sniffers = Sniffer::Convert.new(current_user, stream_sniffers).call
+loopholes = Loophole::Convert.new(current_user, stream_loopholes).call
 
 logger.info "Result sentinels: #{sentinels}"
 logger.info "Result sniffers: #{sniffers}"
+logger.info "Result loopholes: #{loopholes}"
 
 logger.info 'APPLICATION COMPLETE'
