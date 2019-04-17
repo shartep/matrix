@@ -23,13 +23,18 @@ stream_loopholes = {
   node_pairs: File.open('./loopholes/node_pairs.json', 'r'),
 }
 current_user = nil
+passphrase = 'Kans4s-i$-g01ng-by3-bye'
 
-sentinels = Sentinel::Convert.new(current_user, data_stream: stream_sentinels).call
-sniffers = Sniffer::Convert.new(current_user, stream_sniffers).call
-loopholes = Loophole::Convert.new(current_user, stream_loopholes).call
+result = {}
 
-logger.info "Result sentinels: #{sentinels}"
-logger.info "Result sniffers: #{sniffers}"
-logger.info "Result loopholes: #{loopholes}"
+result[:sentinels] = Sentinel::Convert.new(current_user, data_stream: stream_sentinels).call
+result[:sniffers] = Sniffer::Convert.new(current_user, stream_sniffers).call
+result[:loopholes] = Loophole::Convert.new(current_user, stream_loopholes).call
+
+logger.info 'Sentinels', result: result[:sentinels]
+logger.info 'Sniffers', result: result[:sniffers]
+logger.info 'Loopholes', result: result[:loopholes]
+
+Result::Send.new(current_user,result: result, passphrase: passphrase).call
 
 logger.info 'APPLICATION COMPLETE'

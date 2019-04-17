@@ -5,6 +5,7 @@ ruby '2.6.2'
 gem 'activesupport'         # utility classes and Ruby extensions from Rails
 gem 'memoist'               # memoize methods
 gem 'smarter_csv'           # smarter importing of CSV Files, with optional features for processing large files in parallel,
+gem 'faraday'               # Http client, kinda modular and combinable
 
 group :test do
   gem 'rspec'               # test framework
