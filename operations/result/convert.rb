@@ -1,15 +1,14 @@
 module Result
   class Send < ::Operations::Base
-    subject :result
+    subject :routes
     param :passphrase
+    param :source
 
     def _call
-      result.each do |source, list|
-        list.each do |route|
-          http_client.post_json(:routes, route.merge(source: source))
-                     .then(&method(:parse_response))
-                     .tap { |response| logger.info 'Get response', response: response }
-        end
+      routes.each do |route|
+        http_client.post_json(:routes, route.merge(source: source))
+                   .then(&method(:parse_response))
+                   .tap { |response| logger.info 'Get response', response: response }
       end
     end
 

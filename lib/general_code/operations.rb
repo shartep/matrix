@@ -51,24 +51,6 @@ module Operations
     end
   end
 
-  # Validation error, handles message i18n (which it probably should not)
-  class ValidationError < ArgumentError
-    attr_reader :record, :errors
-
-    def self.from_active_record(record)
-      new(
-        record: record,
-        **record.errors.messages.map { |field, errs| [field, errs.map { |e| "#{field.capitalize} #{e}" }.join(', ')] }.to_h
-      )
-    end
-
-    def initialize(record: nil, **errors)
-      @record = record
-      @errors = errors
-      super(@errors.values.join('. '))
-    end
-  end
-
   def self.system
     nil # for now! in future, it could be special object
   end
@@ -95,8 +77,9 @@ module Operations
       check_rights!
       validate!
       _call
-    rescue ActiveRecord::RecordInvalid => e
-      raise Operations::ValidationError.from_active_record(e.record)
+    rescue StandardError => e
+      logger.error e.message, backtrace: e.backtrace
+      raise
     end
 
     class_attribute :_subject, instance_accessor: false
