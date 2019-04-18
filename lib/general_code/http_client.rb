@@ -26,7 +26,7 @@ class HttpClient
 
 
     memoize def connection
-      Faraday.new('https://challenge.distribusion.com/the_one/')
+      Faraday.new(ENV['BASE_URL'])
     end
 
     def ensure_success(response)

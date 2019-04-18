@@ -1,4 +1,4 @@
-module Result
+module Util
   class Send < ::Operations::Base
     subject :routes
     param :passphrase

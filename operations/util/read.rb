@@ -1,4 +1,4 @@
-module Sentinel
+module Util
   class Read < ::Operations::Base
     subject :files
     param :passphrase

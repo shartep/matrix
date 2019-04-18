@@ -36,7 +36,7 @@ module Sniffer
       # [1, :time_in_utc.object] array
       def convert_route(route)
         # fetch time shift from :tome_zone string, skip "±" as it is not parsed correctly
-        zone = route[:time_zone].gsub('±', '+').match(/([+\-]\d.:\d.)/).to_s
+        zone = route[:time_zone].force_encoding('UTF-8').gsub('±', '+').match(/([+\-]\d.:\d.)/).to_s
         [
           route[:route_id],
           Time.strptime(route[:time] + zone, INPUT_TIME_FORMAT).utc

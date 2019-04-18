@@ -7,7 +7,7 @@ Bundler.require(:default)
 require 'active_support'
 require 'active_support/core_ext'
 
-# FIXME: try to remove nextr lines
+# FIXME: try to remove next lines
 require 'open-uri'
 require 'zip'
 
