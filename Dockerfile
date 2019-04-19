@@ -10,5 +10,6 @@ COPY Gemfile Gemfile.lock /app/
 RUN bundle install
 
 COPY . /app/
+RUN cp .env.example .env
 
 CMD bundle exec ruby app.rb -u neo -p knok_knok
