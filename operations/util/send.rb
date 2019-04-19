@@ -14,6 +14,10 @@ module Util
 
     private
 
+      def allowed?
+        performer.admin?
+      end
+
       memoize def http_client
         HttpClient.new(passphrase)
       end

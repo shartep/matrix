@@ -1,1 +1,17 @@
 # matrix
+
+require ruby 2.6.2
+
+**Installation**
+- clone project ``git clone git@github.com:shartep/matrix.git``
+- step into project derictory ``cd matrix``
+- ensure you have correct ruby version ``ruby -v``, should be ``ruby 2.6.2``
+- install bundle gem ``gem install bundler``
+- install dependencies ``bundle install``
+
+**Running**
+- run application ``ruby app.rb -u neo -p knok_knok``
+- execute ``ruby app.rb --help`` for more details
+
+**Specs**
+- execute ``rspec`` to run all specs

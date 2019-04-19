@@ -19,6 +19,10 @@ module Sentinel
 
     private
 
+      def allowed?
+        performer.admin?
+      end
+
       # find start and end node using :time as identifier return hash with required structure
       # return nil when it is not possible to convert
       def convert_route(route_id, routes)

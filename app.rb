@@ -1,12 +1,12 @@
 require './env.rb'
-
 logger = TaggedLogger.new(Logger.new(STDOUT), 'app')
 
+current_user = ParamsParser.current_user
 
 logger.info 'APPLICATION START'
+logger.info "Authenticate user - #{current_user}"
 
-current_user = nil
-passphrase = 'Kans4s-i$-g01ng-by3-bye'
+passphrase = ENV['PASSPHRASE']
 
 SOURCES = {
   Sentinel => %w[routes],

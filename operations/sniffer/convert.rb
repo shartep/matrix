@@ -32,6 +32,10 @@ module Sniffer
 
     private
 
+      def allowed?
+        performer.admin?
+      end
+
       # convert {route_id: 1, time: "2030-12-31T13:00:06", time_zone: "UTC±00:00"} to
       # [1, :time_in_utc.object] array
       def convert_route(route)

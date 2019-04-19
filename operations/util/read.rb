@@ -18,5 +18,11 @@ module Util
 
       result
     end
+
+    private
+
+      def allowed?
+        performer.admin?
+      end
   end
 end

@@ -23,6 +23,10 @@ module Loophole
 
     private
 
+      def allowed?
+        performer.admin?
+      end
+
       # convert {id: '1', start_node: 'lambda', end_node: 'tau'} to
       # [1, { start_node: 'lambda', end_node: 'tau' }] array
       def convert_node_pair(node_pair)
