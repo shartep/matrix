@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # helper class responsible for application params interaction
 class ParamsParser
   def self.current_user
