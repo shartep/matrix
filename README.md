@@ -1,11 +1,11 @@
 # matrix
 
-require ruby 2.6.2
+require ruby 2.6.3
 
 **Installation**
 - clone project ``git clone git@github.com:shartep/matrix.git``
 - step into project derictory ``cd matrix``
-- ensure you have correct ruby version ``ruby -v``, should be ``ruby 2.6.2``
+- ensure you have correct ruby version ``ruby -v``, should be ``ruby 2.6.3``
 - install bundle gem ``gem install bundler``
 - install dependencies ``bundle install``
 
@@ -15,3 +15,8 @@ require ruby 2.6.2
 
 **Specs**
 - execute ``rspec`` to run all specs
+
+**Docker**
+- build image ``docker build -t matrix .``
+- run application ``docker run matrix``
+- run specs ``docker run -it matrix rspec``

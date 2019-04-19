@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '2.6.2'
+ruby '2.6.3'
 
 gem 'activesupport'         # utility classes and Ruby extensions from Rails
 gem 'dotenv'                # Use .env file instead of real ENV, should be at the very top to load as early as possible
