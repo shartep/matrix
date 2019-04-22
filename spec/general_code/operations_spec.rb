@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 RSpec.describe Operations::Base do
-  class User; attr_accessor :name; end
-
   let(:user) { instance_double('User') }
 
   describe '#performer' do

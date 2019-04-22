@@ -7,8 +7,11 @@ User = Struct.new(:id, :name, :password, :admin, keyword_init: true) do
   NotAuthorized    = Class.new(StandardError)
 
   def self.authorize!(name:, password: nil, **_)
+    puts "USER: #{UserStorage::LIST}"
     user = UserStorage::LIST.detect(&U.eq(:name, name))
-    fail NotAuthenticated if user.blank?
+    if user.blank?
+      fail NotAuthenticated
+    end
     fail NotAuthorized if user.admin? && user.password != password
     user
   end
@@ -22,6 +25,8 @@ User = Struct.new(:id, :name, :password, :admin, keyword_init: true) do
   end
 end
 
-module UserStorage
+class UserStorage
   LIST = JSON.parse(ENV['USERS'], symbolize_names: true).map { |user_attr| User.new(user_attr) }
+
+  puts "USER StoRAGE: #{LIST}"
 end

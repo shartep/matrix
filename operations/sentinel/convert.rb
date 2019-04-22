@@ -9,7 +9,7 @@ module Sentinel
       # CONSIDER: it will be good to implement parallel processing here in chunks in case data_stream will be really large
       # but taking in mind that routes with same id can be in different chunks, this task becomes much more complicated
       # than just split data_stream on chunks and process them in different threads
-      SmarterCSV.process(routes, col_sep: ', ', value_converters: { time: TimeConverter })
+      SmarterCSV.process(routes, col_sep: ', ', force_utf8: true, value_converters: { time: TimeConverter })
                 .tap { |source_hash| logger.info "Source hash : #{source_hash}" }
                 .group_by { |route| route[:route_id] }
                 .tap { |groupped_by_route| logger.info "Grouped by route: #{groupped_by_route}" }

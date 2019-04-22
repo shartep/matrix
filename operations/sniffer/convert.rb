@@ -13,18 +13,18 @@ module Sniffer
       # much more complicated than just split data on chunks and process them in different threads, maybe it make sense
       # to use some kind of Database for this
       routes_hash =
-        SmarterCSV.process(routes, col_sep: ', ')
+        SmarterCSV.process(routes, col_sep: ', ', force_utf8: true)
                   .tap { |source_hash| logger.info "Source Routes hash : #{source_hash}" }
                   .to_h(&method(:convert_route))
                   .tap { |converted_routes| logger.info "Source Routes converted hash : #{converted_routes}" }
 
       node_times_hash =
-        SmarterCSV.process(node_times, col_sep: ', ')
+        SmarterCSV.process(node_times, col_sep: ', ', force_utf8: true)
                   .tap { |source_hash| logger.info "Source Node times hash : #{source_hash}" }
                   .to_h(&method(:convert_node_time))
                   .tap { |converted_nodes| logger.info "Source Node times converted hash : #{converted_nodes}" }
 
-      SmarterCSV.process(sequences, col_sep: ', ')
+      SmarterCSV.process(sequences, col_sep: ', ', force_utf8: true)
                 .uniq
                 .map { |sequence| join(sequence, routes_hash, node_times_hash) }
                 .compact
